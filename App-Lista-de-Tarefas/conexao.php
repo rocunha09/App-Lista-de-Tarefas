@@ -7,7 +7,8 @@ class Conexao {
 
     public function conectar(){
         try {
-            $conexao = new PDO("mysql:hostname={$this->$host}; dbname={$this->$db}", $this->$username , $this->$password);
+            $conexao = new PDO("mysql:hostname=$this->host;dbname=$this->db", "$this->username", "$this->password");
+                           
             return $conexao; 
             //echo '<p>Conexão realizada com sucesso.</p>';
 

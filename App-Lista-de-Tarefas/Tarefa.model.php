@@ -7,11 +7,11 @@ class Tarefa {
     private $data_cadastrado;
 
 
-    public __get($atributo){
+    public function __get($atributo){
         return $this->$atributo;
     }
 
-    public __set($atributo, $valor){
+    public function __set($atributo, $valor){
         return $this->$atributo = $valor;
     }
     
