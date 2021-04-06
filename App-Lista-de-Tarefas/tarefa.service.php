@@ -10,7 +10,11 @@ class tarefaService {
     }
 
     public function inserir(){
+        $sql = 'insert into tb_tarefas(tarefa) values(:tarefa)';
 
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(':tarefa', $this->tarefa->__get('tarefa'));
+        $stmt->execute();
     }
 
     public function recuperar(){
