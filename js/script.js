@@ -38,3 +38,7 @@ function cancelar(id, tarefa){
     item.innerHTML='';
     item.innerHTML = tarefa
 }
+
+function remover(id){
+    location.href = 'todas_tarefas.php?acao=remover&id='+ id;
+}

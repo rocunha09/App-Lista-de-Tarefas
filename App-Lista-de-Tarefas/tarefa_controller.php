@@ -47,6 +47,43 @@
         }
         
     }
+
+    if($acao == 'remover'){
+        $tarefa = new Tarefa();
+        
+        if(isset($_GET['id']) && isset($_GET['id']) != ''){
+            $tarefa->__set('id', $_GET['id']);
+        }
+
+        $conexao = new Conexao();
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        if($tarefaService->remover()){
+            header('Location: todas_tarefas.php?acao=recuperar&atualizacao=3');
+
+        } else {
+            header('Location: todas_tarefas.php?acao=recuperar&atualizacao=2');
+        }
+        
+    }
+
+    if($acao == 'check'){
+        $tarefa = new Tarefa();
+        
+        if(isset($_POST['tarefa']) && isset($_GET['id']) && isset($_GET['id']) != ''){
+            $tarefa->__set('tarefa', $_POST['tarefa']);
+            $tarefa->__set('id', $_GET['id']);
+        }
+
+        $conexao = new Conexao();
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        if($tarefaService->atualizar()){
+            header('Location: todas_tarefas.php?acao=recuperar&atualizacao=1');
+
+        } else {
+            header('Location: todas_tarefas.php?acao=recuperar&atualizacao=2');
+        }
+        
+    }
     
     
 

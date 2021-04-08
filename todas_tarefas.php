@@ -24,6 +24,7 @@
 				</a>
 			</div>
 		</nav>
+
 		<!--ALERTA DE atualização-->
 		<?php if(isset($_GET['atualizacao']) && $_GET['atualizacao']== 1){?>
 			<div class="bg-success pt-2 text-white d-flex justify-content-center">
@@ -31,10 +32,19 @@
 			</div>
 		<?php } ?>
 		<!---------------------->
+
 		<!--ALERTA DE  ERRO DE atualização-->
 		<?php if(isset($_GET['atualizacao']) && $_GET['atualizacao']== 2){?>
 			<div class="bg-warning pt-2 text-white d-flex justify-content-center">
 					<h5>Erro! tente novamente mais tarde.</h5>
+			</div>
+		<?php } ?>
+		<!---------------------->
+
+		<!--ALERTA DE remoção-->
+		<?php if(isset($_GET['atualizacao']) && $_GET['atualizacao']== 3){?>
+			<div class="bg-success pt-2 text-white d-flex justify-content-center">
+					<h5>Tarefa excluída com sucesso!</h5>
 			</div>
 		<?php } ?>
 		<!---------------------->
@@ -63,9 +73,9 @@
 										<?= $tarefa->tarefa?> (<?= $tarefa->status?>)
 									</div>
 									<div class="col-sm-2 mt-3 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger"  id="remover.id"></i>
-										<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefa->id?>, '<?= $tarefa->tarefa?>')" id="atualizar.id"></i>
-										<i class="fas fa-check-square fa-lg text-success"  id="atuali.id"></i>
+										<i class="fas fa-trash-alt fa-lg text-danger" onclick="remover(<?= $tarefa->id?>)" id="remover"></i>
+										<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefa->id?>, '<?= $tarefa->tarefa?>')" id="atualizar"></i>
+										<i class="fas fa-check-square fa-lg text-success" onclick="check(<?= $tarefa->id?>)" id="check"></i>
 									</div>
 								</div>
 
