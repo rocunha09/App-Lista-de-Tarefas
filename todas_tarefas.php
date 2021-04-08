@@ -1,3 +1,7 @@
+<?php
+	$acao = 'recuperar';
+	require 'tarefa_controller.php';
+?>
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -7,6 +11,8 @@
 		<link rel="stylesheet" href="css/estilo.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+		<script src="js/script.js"></script>
+
 	</head>
 
 	<body>
@@ -18,6 +24,20 @@
 				</a>
 			</div>
 		</nav>
+		<!--ALERTA DE atualização-->
+		<?php if(isset($_GET['atualizacao']) && $_GET['atualizacao']== 1){?>
+			<div class="bg-success pt-2 text-white d-flex justify-content-center">
+					<h5>Tarefa atualizada com sucesso!</h5>
+			</div>
+		<?php } ?>
+		<!---------------------->
+		<!--ALERTA DE  ERRO DE atualização-->
+		<?php if(isset($_GET['atualizacao']) && $_GET['atualizacao']== 2){?>
+			<div class="bg-warning pt-2 text-white d-flex justify-content-center">
+					<h5>Erro! tente novamente mais tarde.</h5>
+			</div>
+		<?php } ?>
+		<!---------------------->
 
 		<div class="container app">
 			<div class="row">
@@ -36,23 +56,20 @@
 								<h4>Todas tarefas</h4>
 								<hr />
 
+								<?php foreach ($tarefas as $indice => $tarefa) {?>
+
 								<div class="row mb-3 d-flex align-items-center tarefa">
-									<div class="col-sm-9">Lavar o carro (status)</div>
-									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger"></i>
-										<i class="fas fa-edit fa-lg text-info"></i>
-										<i class="fas fa-check-square fa-lg text-success"></i>
+									<div class="col-sm-9" id="tarefa_<?= $tarefa->id?>">
+										<?= $tarefa->tarefa?> (<?= $tarefa->status?>)
+									</div>
+									<div class="col-sm-2 mt-3 d-flex justify-content-between">
+										<i class="fas fa-trash-alt fa-lg text-danger"  id="remover.id"></i>
+										<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefa->id?>, '<?= $tarefa->tarefa?>')" id="atualizar.id"></i>
+										<i class="fas fa-check-square fa-lg text-success"  id="atuali.id"></i>
 									</div>
 								</div>
 
-								<div class="row mb-3 d-flex align-items-center tarefa">
-									<div class="col-sm-9">Passear com o cachorro (status)</div>
-									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger"></i>
-										<i class="fas fa-edit fa-lg text-info"></i>
-										<i class="fas fa-check-square fa-lg text-success"></i>
-									</div>
-								</div>
+								<?php } ?>
 								
 							</div>
 						</div>
