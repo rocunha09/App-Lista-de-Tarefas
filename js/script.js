@@ -1,7 +1,7 @@
-function editar(id, tarefa){
+function editar(pagina, id, tarefa){
     var form = document.createElement("form");
     form.setAttribute('method',"post");
-    form.setAttribute('action',"tarefa_controller.php?acao=atualizar&id="+ id);
+    form.setAttribute('action',"tarefa_controller.php?pagina=" + pagina + "&acao=atualizar&id="+ id);
     form.setAttribute('class',"align-items-center");
     form.setAttribute('id','tarefa_'+ id);
 
@@ -39,6 +39,12 @@ function cancelar(id, tarefa){
     item.innerHTML = tarefa
 }
 
-function remover(id){
-    location.href = 'todas_tarefas.php?acao=remover&id='+ id;
+function remover(pagina, id){
+    location.href = pagina+'.php?acao=remover&id='+ id;
 }
+
+function check(pagina, id){
+    location.href = pagina+'.php?acao=check&id='+ id;
+
+}
+

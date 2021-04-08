@@ -1,5 +1,6 @@
 <?php
 	$acao = 'recuperar';
+	$pagina = 'todas_tarefas';
 	require 'tarefa_controller.php';
 ?>
 <html>
@@ -49,6 +50,14 @@
 		<?php } ?>
 		<!---------------------->
 
+		<!--ALERTA DE check-->
+		<?php if(isset($_GET['atualizacao']) && $_GET['atualizacao']== 4){?>
+			<div class="bg-success pt-2 text-white d-flex justify-content-center">
+					<h5>Tarefa marcada como Realizada!</h5>
+			</div>
+		<?php } ?>
+		<!---------------------->
+
 		<div class="container app">
 			<div class="row">
 				<div class="col-sm-3 menu">
@@ -73,9 +82,15 @@
 										<?= $tarefa->tarefa?> (<?= $tarefa->status?>)
 									</div>
 									<div class="col-sm-2 mt-3 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger" onclick="remover(<?= $tarefa->id?>)" id="remover"></i>
-										<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefa->id?>, '<?= $tarefa->tarefa?>')" id="atualizar"></i>
-										<i class="fas fa-check-square fa-lg text-success" onclick="check(<?= $tarefa->id?>)" id="check"></i>
+										<i class="fas fa-trash-alt fa-lg text-danger" onclick="remover('<?= $pagina?>', <?= $tarefa->id?>)" id="remover_<?= $tarefa->id?>"></i>
+									
+									<?php if($tarefa->status == 1 || $tarefa->status == 'pendente'){ ?>
+									
+										<i class="fas fa-edit fa-lg text-info" onclick="editar('<?= $pagina?>', <?= $tarefa->id?>, '<?= $tarefa->tarefa?>')" id="atualizar_<?= $tarefa->id?>"></i>
+										<i class="fas fa-check-square fa-lg text-success" onclick="check('<?= $pagina?>', <?= $tarefa->id?>)" id="check_<?= $tarefa->id?>"></i>
+									
+									<?php } ?>
+									
 									</div>
 								</div>
 

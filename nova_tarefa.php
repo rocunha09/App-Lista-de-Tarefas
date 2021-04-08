@@ -26,6 +26,14 @@
 		<?php } ?>
 		<!---------------------->
 
+		<!--ALERTA DE  ERRO  DE INCLUSÃO-->
+		<?php if(isset($_GET['inclusao']) && $_GET['inclusao']== 2){?>
+			<div class="bg-warning pt-2 text-white d-flex justify-content-center">
+					<h5>Erro tente novamente mais tarde!</h5>
+			</div>
+		<?php } ?>
+		<!---------------------->
+
 		<div class="container app">
 			<div class="row">
 				<div class="col-md-3 menu">

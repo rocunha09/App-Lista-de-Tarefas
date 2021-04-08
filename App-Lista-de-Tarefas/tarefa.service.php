@@ -14,7 +14,9 @@ class tarefaService {
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(':tarefa', $this->tarefa->__get('tarefa'));
-        $stmt->execute();
+        $result = $stmt->execute();
+
+        return $result;
     }
 
     public function recuperar(){
@@ -52,6 +54,17 @@ class tarefaService {
         $stmt->bindValue(':id', $this->tarefa->__get('id'));
         $result = $stmt->execute();
 
+        return $result;
+    }
+
+    public function check(){
+        $sql = "update tb_tarefas set id_status = :status where id = :id";
+
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(':status', $this->tarefa->__get('id_status'));
+        $stmt->bindValue(':id', $this->tarefa->__get('id'));
+        $result = $stmt->execute();
+        
         return $result;
     }
 }
