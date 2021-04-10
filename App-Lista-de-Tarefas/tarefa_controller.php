@@ -6,6 +6,7 @@
     $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
     $pagina = isset($_GET['pagina']) ? $_GET['pagina'] : $pagina;
 
+  
     if($acao == 'inserir'){
         $tarefa = new Tarefa();
     
@@ -85,14 +86,32 @@
 
         $conexao = new Conexao();
         $tarefaService = new TarefaService($conexao, $tarefa);
-        if($tarefaService->check()){
-            header('Location: ' . $pagina .'.php?acao=recuperar&atualizacao=4');
-
+        
+        //o fato de usar redirecionamento dinâmico torna necessário a definição de ação dinâmica também.
+        if($pagina == 'index'){
+            $acao = 'recuperarTarefasPendentes';
         } else {
-            header('Location: ' . $pagina .'.php?acao=recuperar&atualizacao=2');
+            $acao = 'recuperar';
         }
         
+        if($tarefaService->check()){
+            header('Location: ' . $pagina .'.php?acao=' . $acao .'&atualizacao=4');
+
+        } else {
+            header('Location: ' . $pagina .'.php?acao=' . $acao .'&atualizacao=2');
+        }
+
     }
+
+    if($acao == 'recuperarTarefasPendentes'){
+        $tarefa = new Tarefa();
+        $conexao = new Conexao();
+        $tarefa->__set('id_status', 1);
+        
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        $tarefas = $tarefaService->recuperarTarefasPendentes();
+    }
+
     
     
 

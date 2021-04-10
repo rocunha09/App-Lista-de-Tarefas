@@ -13,7 +13,7 @@ create table tb_tarefas(
     foreign key(id_status) references tb_status(id),
 	tarefa text not null,
     data_cadastrado datetime not null default current_timestamp
-)
+);
 
 create table tb_usuarios(
 	id int not null primary key auto_increment,

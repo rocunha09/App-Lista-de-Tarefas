@@ -1,7 +1,8 @@
 <?php
-	$acao = 'recuperar';
 	$pagina = 'index';
+	$acao = 'recuperarTarefasPendentes';
 	require 'tarefa_controller.php';
+
 ?>
 <html>
 	<head>
@@ -73,10 +74,8 @@
 							<div class="col">
 								<h4>Tarefas pendentes</h4>
 								<hr />
-
-								<?php foreach ($tarefas as $indice => $tarefa) {
-									if($tarefa->status == 1 || $tarefa->status == 'pendente'){
-								?>
+				
+								<?php foreach ($tarefas as $indice => $tarefa) {?>
 
 								<div class="row mb-3 d-flex align-items-center tarefa">
 									<div class="col-sm-9" id="tarefa_<?= $tarefa->id?>">
@@ -89,7 +88,7 @@
 									</div>
 								</div>
 
-								<?php }} ?>
+								<?php } ?>
 							</div>
 						</div>
 					</div>
